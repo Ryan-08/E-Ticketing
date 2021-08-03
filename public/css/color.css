@@ -1,0 +1,17 @@
+:root {
+  --primary-color: linear-gradient(0deg, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+  --dark-blue-color: #21427c;
+  --blue-color: #0029ff;
+  --gray-color: #eeeeee;
+  --dark-gray-color: #989898;
+  --white-color: #ffffff;
+  --dark-color-a: #f7f8fc;
+  --dark-color-b: #e5e5e5;
+  --open-color: #3751ff;
+  --pending-color: #fec400;
+  --close-color: #29cc97;
+  --black-color: #252733;
+  --light-color: #e6e9ff;
+  --success-color: #5cb85c;
+  --error-color: #d9534f;
+}
