@@ -1,4 +1,5 @@
-@extends('/layout/master') @section('title') E-Ticketing | Masuk @endsection
+@extends('layout.master')
+@section('title') E-Ticketing | Masuk @endsection
 @section('konten')
 <div class="login-container">
   <div class="description-container">
@@ -32,20 +33,21 @@
     <div class="form-title">
       <h1>Selamat Datang</h1>
     </div>
-    <form action="/admin/home" class="form">
+    <form action="{{ route('postlogin') }}" method="POST" class="form">
+      @csrf
       <div class="form-input">
         <label for="username">
           <span><i class="fas fa-envelope"></i></span>
         </label>
-        <input id="username" type="text" placeholder="Email" />
+        <input id="email" name="email" type="email" placeholder="Email" />
       </div>
       <div class="form-input">
         <label for="password">
           <span><i class="fas fa-lock"></i></span>
         </label>
-        <input id="password" type="password" placeholder="Password" />
+        <input id="password" name="password" type="password" placeholder="Password" />
         <label for="password">
-          <span><i class="fas fa-eye-slash"></i></span>
+          <span id="show-password"><i class="fas fa-eye-slash"></i></span>
         </label>
       </div>
       <div class="form-extras">
@@ -54,7 +56,7 @@
           <label for="remember">Ingat Saya</label>
         </div>
         <div class="lupa-password">
-          <a href="">Lupa Password?</a>
+          <a href="{{ route('password.request') }}">Lupa Password?</a>
         </div>
       </div>
       <div class="form-button">

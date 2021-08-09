@@ -1,9 +1,11 @@
-@extends('/layout/dashboard') @section('title') Admin | Tambah Pengguna
-@endsection @section('header-title') Daftar Pengguna @endsection
+@extends('layout.dashboard') 
+@section('title') Admin | Tambah Pengguna @endsection 
+@section('header-title') Daftar Pengguna @endsection
 @section('konten')
 <div class="container">
   <div class="form-container">
-    <form action="">
+    <form action="{{ Route('tambah') }}" method="POST" >
+      @csrf
       <div class="form-header">Tambah Pengguna</div>
       <div class="form-body">
         <div class="form-list">
@@ -14,7 +16,7 @@
               name="instansi"
               id="instansi"
               placeholder="Masukkan nama instansi"
-            />
+            />                       
           </div>
         </div>
         <div class="form-list">
@@ -39,10 +41,34 @@
             />
           </div>
         </div>
+        <div class="form-list">
+          <label for="list-role">Jenis Akun</label>
+          <div class="custom-select">
+            <select name="role">
+              <option value="0">--- Pilih ---</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>              
+            </select>
+          </div>
+        </div>
+        <div class="form-list">
+          <label for="no_telepon">Password</label>
+          <div class="form-input">
+            <input
+              type="text"
+              name="password"
+              id="password"
+              placeholder="Masukkan password"
+            />
+          </div>
+          <button type="button" class="generate" id="generate">
+            Click to random password
+          </button>
+        </div>
       </div>
       <div class="form-footer">
         <button class="form-btn btn-danger">Batal</button>
-        <button class="form-btn btn-success">Tambah</button>
+        <button type="submit" class="form-btn btn-success">Tambah</button>
       </div>
     </form>
   </div>
