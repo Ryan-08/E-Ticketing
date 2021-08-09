@@ -7,7 +7,7 @@
   </div>
   <ul class="nav-links">
     <li class="links">
-      <a href="/admin/home">
+      <a href="{{ route('dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
         <span>
           <i class="fas fa-layer-group"></i>
         </span>
@@ -15,23 +15,25 @@
       </a>
     </li>
     <li class="links">
-      <a href="/admin/daftar-tiket">
+      <a href="{{ route('daftar-tiket') }}" class="{{ request()->is('daftar-tiket*') ? 'active' : '' }}">
         <span>
           <i class="fas fa-ticket-alt"></i>
         </span>
         Daftar Tiket
       </a>
     </li>
+    @role('admin')
     <li class="links">
-      <a href="/admin/daftar-pengguna">
+      <a href="{{ route('daftar-pengguna') }}" class="{{ request()->is('daftar-pengguna*') ? 'active' : ''}}">
         <span>
           <i class="fas fa-users"></i>
         </span>
         Daftar Pengguna
       </a>
     </li>
+    @endrole
     <li class="links">
-      <a href="/">
+      <a href="{{ route('logout') }}">
         <span>
           <i class="fas fa-sign-out-alt"></i>
         </span>
@@ -48,20 +50,5 @@
       // add class to the one we clicked
       $(this).toggleClass("active");
     });
-  });
-  $(function () {
-    if (location.pathname.split("/")[2]) {
-      $(
-        'ul a[href^="/' +
-          location.pathname.split("/")[1] +
-          "/" +
-          location.pathname.split("/")[2] +
-          '"]'
-      ).addClass("active");
-    } else {
-      $('ul a[href^="/' + location.pathname.split("/")[1] + '"]').addClass(
-        "active"
-      );
-    }
   });
 </script>
