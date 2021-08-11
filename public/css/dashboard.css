@@ -65,6 +65,9 @@ body {
   padding-top: 0;
   padding-bottom: 0;
 }
+.list-aktivitas #see-more {
+  display: none;
+}
 .list-aktivitas .card {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
@@ -411,4 +414,132 @@ tr .tiket:nth-child(4) {
 }
 .aksi .hapus:hover {
   background-color: #bb2d3b;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.cara {
+  color: #21427C;
+  font-size: 22px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: -30%;
+  padding-left: 55%;
+  padding-right: 60px;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {   
+  position: absolute;
+}
+ .bg{   
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  margin-left: 36px;
+  margin-top: 11px;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 2px;
+  background-color: #CEDDF9;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.aktif, .dot:hover {
+  background-color: #4D7BE4;
+}
+
+#btn-see-more {
+  border: none;
+  outline: none;
+  padding: 0px;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  color: var(--blue-color);
+  font-family: 'Poppins';
+  font-size: 13px;
+  font-weight: 600;
+}
+#btn-see-more:hover {
+  color: #73a6ff;
 }
