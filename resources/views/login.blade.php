@@ -32,7 +32,7 @@
     <div class="form-title">
       <h1>Selamat Datang</h1>
     </div>
-    <form action="/admin/home" class="form">
+    <form action="/user/home" class="form">
       <div class="form-input">
         <label for="username">
           <span><i class="fas fa-envelope"></i></span>

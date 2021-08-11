@@ -17,18 +17,33 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/admin/home', function () {
-    return view('admin/home');
+Route::get('/user/home', function () {
+    return view('user/home');
 });
-Route::get('/admin/daftar-tiket', function () {
-    return view('admin/daftar-tiket');
+Route::get('/user/profil', function () {
+    return view('user/profil');
 });
-Route::get('/admin/daftar-pengguna', function () {
-    return view('admin/daftar-pengguna');
+Route::get('/user/data-diri', function () {
+    return view('user/data-diri');
 });
-Route::get('/admin/daftar-pengguna/tambah', function () {
-    return view('admin/tambah-pengguna');
+Route::get('/user/ubah-password', function () {
+    return view('user/ubah-password');
 });
-Route::get('/admin/daftar-pengguna/edit', function () {
-    return view('admin/edit-pengguna');
+Route::get('/user/lapor-masalah', function () {
+    return view('user/lapor-masalah');
+});
+Route::get('/user/daftar-masalah', function () {
+    return view('user/daftar-masalah');
+});
+Route::get('/user/pending', function () {
+    return view('user/pending');
+});
+Route::get('/user/close', function () {
+    return view('user/close');
+});
+Route::get('/user/open-tiket', function () {
+    return view('user/open-tiket');
+});
+Route::get('/user/close-tiket', function () {
+    return view('user/close-tiket');
 });

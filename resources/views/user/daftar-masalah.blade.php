@@ -1,12 +1,6 @@
-@extends('/layout/dashboard') @section('title') Admin | Daftar Tiket @endsection
-@section('header-title') Daftar Tiket @endsection @section('konten')
+@extends('/layout/dashboard') @section('title') Daftar Masalah @endsection
+@section('header-title') Daftar Masalah @endsection @section('konten')
 <div class="container" id="container">
-  <div class="button-sticky">
-    <button class="btn-primary">
-      <span><i class="fas fa-print"></i></span>
-      Cetak Laporan
-    </button>
-  </div>
   <div class="container-list">
     <div class="card">
       <div class="card-body">
@@ -50,7 +44,7 @@
                     <th class="table-header">Status</th>
                   </tr>
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="/user/close">
                     <td class="tiket">
                       <div class="detail-tiket">
                         <img
@@ -83,15 +77,13 @@
                     </td>
                     <td class="tiket">
                       <div class="status-tiket">
-                        <div class="status close">
-                          CLOSE
-                        </div>
+                        <div class="status close">CLOSE</div>    
                       </div>
                     </td>
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="/user/open-tiket">
                     <td class="tiket">
                       <div class="detail-tiket">
                         <img
@@ -124,15 +116,14 @@
                     </td>
                     <td class="tiket">
                       <div class="status-tiket">
-                        <div class="status open">
-                          OPEN
-                        </div>
+                        <div class="status open">OPEN</div>
                       </div>
                     </td>
                   </tr>
                   <!-- end tiket -->
+                  
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="/user/pending">
                     <td class="tiket">
                       <div class="detail-tiket">
                         <img
@@ -165,50 +156,7 @@
                     </td>
                     <td class="tiket">
                       <div class="status-tiket">
-                        <div class="status close">
-                          CLOSE
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end tiket -->
-                  <!-- tiket -->
-                  <tr class="list" data-url="/home">
-                    <td class="tiket">
-                      <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
-                        <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="nama-instansi">
-                        <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="tanggal-selesai">
-                        <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="status-tiket">
-                        <div class="status pending">
-                          PENDING
-                        </div>
+                        <div class="status pending">PENDING</div>
                       </div>
                     </td>
                   </tr>
@@ -340,6 +288,7 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 <script>

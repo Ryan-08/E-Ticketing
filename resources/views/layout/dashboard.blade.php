@@ -45,11 +45,14 @@
       src="https://kit.fontawesome.com/8a82831e73.js"
       crossorigin="anonymous"
     ></script>
+
+
   </head>
   <body>
     @include('../snippet/sidebar') @include('../snippet/header')
     @yield('konten')
 
     <!-- <script src="js/main.js"></script> -->
+    <script src="{{asset('js/app.js')}}"></script>
   </body>
 </html>
