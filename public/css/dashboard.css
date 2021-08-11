@@ -11,10 +11,29 @@ body {
   font-family: "Poppins", sans-serif;
   height: 100%;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .container {
   padding-left: 30px;
   margin-left: 209px;
+  padding-bottom: 50px;
   font-family: "Mulish", sans-serif;
 }
 .container .row {
@@ -75,11 +94,34 @@ body {
   font-family: "Poppins";
   padding: 20px;
   margin: 20px 0px;
+  cursor: pointer;
+}
+.list-aktivitas .card:hover {
+  background-color: #e5e5e5;
 }
 
 .list-aktivitas .card .card-title {
   font-weight: 500;
   font-size: 15px;
+}
+.list-aktivitas #see-more {
+  display: none;
+}
+#btn-see-more {
+  border: none;
+  outline: none;
+  padding: 0px;
+  padding-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  color: var(--blue-color);
+  font-family: 'Poppins';
+  font-size: 13px;
+  font-weight: 600;
+}
+#btn-see-more:hover {
+  color: #73a6ff;
 }
 .card-detail {
   display: flex;
@@ -119,9 +161,6 @@ body {
   width: 84px;
   height: 22px;
   padding: 2px;
-  background-color: #29cc97;
-  border-radius: 4px;
-  color: #ffffff;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
@@ -210,6 +249,7 @@ body {
   outline: none;
   color: white;
 }
+
 .list-fitur .btn-primary {
   position: relative;
   margin-bottom: 10px;
@@ -293,7 +333,16 @@ body {
 input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-
+.form-input .close-search{
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  right: 255px;
+  top: 26px;
+}
+.close-search.active {
+  display: block;
+}
 .form-input input:focus {
   outline: none;
 }
@@ -313,7 +362,28 @@ input:focus::-webkit-input-placeholder {
   font-weight: 700;
   color: #9fa2b4;
 }
-
+.flex {
+  margin-left: 20px;
+}
+.flex:nth-child(1) {
+  margin-left: 0px;
+}
+.hidden div:nth-child(1) {
+  margin-top: 20px;
+}
+.hidden div:nth-child(2) {
+  display: none;
+}
+.table-footer {
+  padding: 10px;
+}
+.flex a {
+  color: black;
+  margin-bottom: 200px;
+}
+.flex a:hover {
+  color: var(--dark-blue-color);
+}
 .list-tiket {
   display: flex;
   width: 100%;
@@ -331,7 +401,7 @@ input:focus::-webkit-input-placeholder {
 .list-tiket .detail-tiket {
   align-items: center;
 }
-.list-tiket .status-tiket .status {
+.status {
   border-radius: 20px;
   padding: 5px 20px;
   color: white;
@@ -340,14 +410,17 @@ input:focus::-webkit-input-placeholder {
   width: 91px;
   text-align: center;
 }
-.list-tiket .status-tiket .status.open {
+.status.open {
   background-color: var(--open-color);
 }
-.list-tiket .status-tiket .status.close {
+.status.close {
   background-color: var(--close-color);
 }
-.list-tiket .status-tiket .status.pending {
+.status.pending {
   background-color: var(--pending-color);
+}
+.status.waiting {
+  background-color: gray;
 }
 
 .detail-tiket img {
@@ -374,6 +447,12 @@ tr .tiket:nth-child(4) {
 .text-atas {
   font-size: 14px;
   font-weight: 700;
+  display: block;
+  min-width: 40px;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .text-bawah {
   font-size: 12px;
@@ -415,37 +494,6 @@ tr .tiket:nth-child(4) {
 .aksi .hapus:hover {
   background-color: #bb2d3b;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 * {box-sizing:border-box}
 
@@ -500,10 +548,10 @@ tr .tiket:nth-child(4) {
 }
 
 /* Number text (1/3 etc) */
-.numbertext {   
+.numbertext {
   position: absolute;
 }
- .bg{   
+ .bg{
   width: 40px;
   height: 40px;
   position: absolute;
@@ -542,4 +590,14 @@ tr .tiket:nth-child(4) {
 }
 #btn-see-more:hover {
   color: #73a6ff;
+}
+.generate {
+  border: none;
+  outline: none;
+  color: blue;
+  background: none;
+  position: absolute;
+  right: 0;
+  margin-right: 270px;
+  font-weight: 700;
 }

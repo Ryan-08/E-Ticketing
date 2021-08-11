@@ -1,5 +1,7 @@
-@extends('/layout/dashboard') @section('title') Admin | Daftar Tiket @endsection
-@section('header-title') Daftar Tiket @endsection @section('konten')
+@extends('layout.dashboard')
+@section('title') Admin | Daftar Tiket @endsection
+@section('header-title') Daftar Tiket @endsection
+@section('konten')
 <div class="container" id="container">
   <div class="button-sticky">
     <button class="btn-primary">
@@ -15,12 +17,7 @@
           <div class="list-fitur">
             <form action="">
               <div class="form-input">
-                <input
-                  type="search"
-                  name="Search-tiket"
-                  id="search"
-                  placeholder="Cari..."
-                />
+                <input type="search" name="Search-tiket" id="search" placeholder="Cari..." />
                 <label for="search">
                   <span>
                     <i class="fas fa-search"></i>
@@ -50,17 +47,12 @@
                     <th class="table-header">Status</th>
                   </tr>
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 1) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
+                          <span class="text-atas">Contact Email not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
                         </div>
                       </div>
@@ -83,25 +75,20 @@
                     </td>
                     <td class="tiket">
                       <div class="status-tiket">
-                        <div class="status close">
-                          CLOSE
+                        <div class="status waiting">
+                          Waiting
                         </div>
                       </div>
                     </td>
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 2) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
+                          <span class="text-atas">Contact Email not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
                         </div>
                       </div>
@@ -132,17 +119,12 @@
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 3) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
+                          <span class="text-atas">Contact Email not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
                         </div>
                       </div>
@@ -173,17 +155,12 @@
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 4) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
+                          <span class="text-atas">Contact Email not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
                         </div>
                       </div>
@@ -214,17 +191,12 @@
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 1) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
+                          <span class="text-atas">Contact Email not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
                         </div>
                       </div>
@@ -255,13 +227,10 @@
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 1) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
                           <span class="text-atas">Contact Mail not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
@@ -294,17 +263,12 @@
                   </tr>
                   <!-- end tiket -->
                   <!-- tiket -->
-                  <tr class="list" data-url="/home">
+                  <tr class="list" data-url="{{ route('detail', 1) }}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img src="{{asset ('images/avatar-noname.svg')}}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
+                          <span class="text-atas">Contact Email not Linked</span>
                           <span class="text-bawah">Nomor Tiket: 001-ABC</span>
                         </div>
                       </div>
@@ -347,4 +311,19 @@
     window.location = $(this).data("url");
   });
 </script>
+<!--Start of Tawk.to Script-->
+<!-- <script type="text/javascript">
+  var Tawk_API = Tawk_API || {},
+    Tawk_LoadStart = new Date();
+  (function () {
+    var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = "https://embed.tawk.to/610966c2649e0a0a5ccf54e8/1fc6bir00";
+    s1.charset = "UTF-8";
+    s1.setAttribute("crossorigin", "*");
+    s0.parentNode.insertBefore(s1, s0);
+  })();
+</script> -->
+<!--End of Tawk.to Script-->
 @endsection

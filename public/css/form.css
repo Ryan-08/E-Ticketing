@@ -1,10 +1,11 @@
+@import "color.css";
 .form-container {
   display: flex;
   justify-content: center;
   align-content: center;
   width: 100%;
 }
-.form-container form {
+.form-container .form, .form-container form {
   background-color: white;
   border: 1px solid #dfe0eb;
   border-radius: 10px;
@@ -53,7 +54,7 @@
 }
 
 
-.form-container .tabel .form-body .form-list .input-1 { 
+.form-container .tabel .form-body .form-list .input-1 {
   padding: 20px;
   border-radius: 10px;
   background-color: white;
@@ -161,8 +162,8 @@
   position: relative;
   width: 180px;
   height: 40px;
-  border-radius: 10px; 
-  margin-left: 30px;  
+  border-radius: 10px;
+  margin-left: 30px;
 }
 .container .form-container form .text{
   text-align: center;
@@ -263,7 +264,7 @@
   padding-left: 400px;
   padding-right:450px;
 
-  
+
 }
 
 .input-3 .upload-btn-wrapper a{
@@ -329,14 +330,127 @@
   padding-bottom: 50px;
 }
 
+.form-checklist {
+  display: flex;
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: 1px solid #C5C7CD;
+}
+.form-checklist label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.form-checklist .delete_list {
+  background: none;
+  border: none;
+  font-size: 14px;
+}
+.form-checklist .delete_list:hover {
+  color: red;
+}
+.form-checklist .container {
+  display: block;
+  position: relative;
+  padding: 0px;
+  padding-left: 35px;
+  margin: 0px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.form-checklist .container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.form-checklist .checkmark {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.form-checklist .container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.form-checklist .container input:checked ~ .checkmark {
+  background-color: var(--blue-color);
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.form-checklist .checkmark.check:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.form-checklist .container input:checked ~ .checkmark.check:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.form-checklist .container .checkmark.check:after {
+  left: 8px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.form-tambah {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  border-bottom: 1px solid #DFE0EB;
+}
+.form-tambah input{
+  width: 100%;
+  border: none;
+}
+.form-tambah input:focus {
+  outline: none;
+}
+.form-tambah input::placeholder {
+  font-size: 14px;
+  color: #C5C7CD;
+}
+.form-tambah button{
+  background-color: #F0F1F7;
+  border: none;
+  border-radius: 10px;
+  width: 25px;
+  height: 25px;
+}
+.form-tambah button i {
+  color: #9FA2B4;
+}
 
 .form-box {
   width: 100%;
   padding: 10px 20px;
   border: 1px solid #C5C7CD;
-  border-radius: 10px; 
-  display: flex; 
-  justify-content: flex-start;  
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
   margin-bottom: 15px;
 }
 .form-box.center {
@@ -351,19 +465,19 @@
   justify-content: center;
   color: black;
   font-weight: 400;
-  font-size: 16px;  
+  font-size: 16px;
 }
 
 .form-box .form-text i {
-  font-size: 20px; 
+  font-size: 20px;
   color: #21427C;
   margin-right: 20px;
   margin-top: 2px;
 }
 
 .inline-form{
-  display: flex;   
-  width: 100%;  
+  display: flex;
+  width: 100%;
 }
 .inline-form .form-list:nth-child(1) {
   margin-right: 30px;
@@ -378,10 +492,10 @@
 }
 
 /* Style the Image Used to Trigger the Modal */
-#myBtn {  
+#myBtn {
   border-radius: 5px;
   cursor: pointer;
-  transition: 0.3s; 
+  transition: 0.3s;
 }
 #myImg {
   display: none;
@@ -390,7 +504,7 @@
 #myBtn:hover {opacity: 0.7;}
 
 /* The Modal (background) */
-.modal {
+.modal,.my-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -405,7 +519,7 @@
 }
 
 /* Modal Content (Image) */
-.modal-content {
+.modal-content,.my-modal-content {
   margin: auto;
   display: block;
   width: 80%;
@@ -425,7 +539,8 @@
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
+
+#caption, .my-modal-content, #caption {
   animation-name: zoom;
   animation-duration: 0.6s;
 }
@@ -451,4 +566,88 @@
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .my-modal-content {
+    width: 100%;
+  }
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  padding: 20px;
+  border-radius: 80px;
+  width: 100%;
+  border-radius: 30px;
+  background-color: transparent;
+  border: 1px solid #c5c7cd;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  border: none;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 24px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: black transparent transparent transparent;
+}
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent black transparent;
+  top: 17px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  padding: 8px 16px;
+  cursor: pointer;
+  user-select: none;
+  color: black;
+}
+.select-items{
+  border: #c5c7cd 1px solid;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-body textarea {
+  width: 100%;
+  padding: 10px;
+}
+.modal-body textarea:focus {
+  outline: none;
 }

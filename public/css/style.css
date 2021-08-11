@@ -9,6 +9,25 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 body {
   font-size: 16px;
   background-color: var(--dark-color-a);
@@ -170,6 +189,7 @@ input:focus::-webkit-input-placeholder {
 }
 .form-input label:nth-child(3) span i {
   color: var(--dark-gray-color);
+  cursor: pointer;
 }
 .form-input label:nth-child(3) span i.active {
   content: "\f06e";
@@ -361,4 +381,3 @@ input:focus::-webkit-input-placeholder {
     display: none;
   }
 }
-
