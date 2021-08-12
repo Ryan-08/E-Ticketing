@@ -34,6 +34,16 @@ io.on("connection", (socket) => {
     socket.emit("send-message", formatMessage("user", msg));
   });
 
+  /*from server side we will emit 'display' event once the user starts typing
+    so that on the client side we can capture this event and display 
+    '<data.user> is typing...' */
+    socket.on('typing', (data)=>{
+      if(data.typing==true)
+         socket.broadcast.emit('display', data)
+      else
+         socket.broadcast.emit('display', data)
+    })
+
   //   Run when client disconnect
   socket.on("disconnect", () => {    
       // io.emit(

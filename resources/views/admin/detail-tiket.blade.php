@@ -8,10 +8,10 @@
 <div class="container">
     @if( $id == 3)
     <div class="button-sticky">
-        <button class="btn-primary">
+        <a href="{{ route('print') }}" class="btn-primary">
             <span><i class="fas fa-print"></i></span>
             Cetak Laporan
-        </button>
+        </a>
     </div>
     <div class="form-container" style="padding-top: 60px;">
         @else

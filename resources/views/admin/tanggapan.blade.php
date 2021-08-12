@@ -208,13 +208,13 @@
     }
 
     .chat-send .chat-message {
-        background-color: var(--blue-color);
+        background-color: var(--dark-gray-color);
         color: white;
     }
 
     .chat-receive .chat-message {
-        background-color: var(--dark-gray-color);
-        color: black;
+        background-color: var(--dark-blue-color);
+        color: white;
     }
 
     .typing {
@@ -333,18 +333,18 @@
         </div>
         <div class="chat-body">
             <div class="chat-send">
-                <img src="{{ asset('images/tes-profil.jpg')}}" alt="avatar" width=45 height=45>
+                <span class="time">6:48am</span>
                 <div class="chat-message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt animi tempora
                     aperiam alias dolores quos, esse necessitatibus mollitia magnam quod voluptates ipsum corrupti
                     doloribus, totam incidunt omnis? Molestias, enim minus?</div>
-                <span class="time">6:48am</span>
+                <img src="{{ asset('images/tes-profil.jpg')}}" alt="avatar" width=45 height=45>
             </div>
             <div class="chat-receive">
-                <span class="time">6:48am</span>
+                <img src="{{ asset('images/tes-profil.jpg')}}" alt="avatar" width=45 height=45>
                 <div class="chat-message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt animi tempora
                     aperiam alias dolores quos, esse necessitatibus mollitia magnam quod voluptates ipsum corrupti
                     doloribus, totam incidunt omnis? Molestias, enim minus?</div>
-                <img src="{{ asset('images/tes-profil.jpg')}}" alt="avatar" width=45 height=45>
+                <span class="time">6:48am</span>
             </div>
             <div class="typing">
                 <img src="{{ asset('images/tes-profil.jpg')}}" alt="avatar" width=45 height=45>

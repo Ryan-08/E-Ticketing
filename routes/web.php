@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [HomeController::class, 'home'])->name('dashboard');
     Route::get('daftar-tiket', [HomeController::class, 'daftarTiket'])->name('daftar-tiket');    
 
-    Route::get('chart', [ReportsChartController::class, 'index'])->name('chart');  
+    // Route::get('chart', [ReportsChartController::class, 'index'])->name('chart');  
 
     Route::get('welcome/{id}/{pass}', [MailController::class, 'new_user_mail'])->name('welcome');             
     
@@ -82,4 +82,5 @@ Route::get('/reset-password/{token}', [UserController::class, 'reset_password'])
 
 Route::post('/reset-password', [UserController::class, 'update_password'])->middleware('guest')->name('password.update');
 
-Route::get('/print', [HomeController::class, 'pdf']);
+// cetak
+Route::get('/print', [HomeController::class, 'pdf'])->name('print');

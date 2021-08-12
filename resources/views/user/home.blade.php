@@ -93,13 +93,13 @@
     }
 
     .chat-send .chat-message {
-        background-color: var(--blue-color);
+        background-color: var(--dark-gray-color);
         color: white;
     }
 
     .chat-receive .chat-message {
-        background-color: var(--dark-gray-color);
-        color: black;
+        background-color: var(--dark-blue-color);
+        color: white;
     }
 
     .typing {

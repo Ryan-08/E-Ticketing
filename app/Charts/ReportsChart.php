@@ -20,6 +20,7 @@ class ReportsChart extends BaseChart
         return Chartisan::build()
             ->labels(['First', 'Second', 'Third', 'Second', 'Third', 'Second', 'Third', 'Second', 'Third'])
             ->dataset('Sample', [1, 120, 3, 10, 2, 30, 60, 22, 3])
+            ->dataset('Sample 3', [1, 12, 30, 100, 22, 3, 0, 22, 33])
             ->dataset('Sample 2', [3, 20, 11, 2, 100, 2, 1]);
     }
 }
