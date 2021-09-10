@@ -23,17 +23,17 @@ class LoginController extends Controller
         $email = $request->email;
         $password = $request->password;
         $remember = $request->remember;
+        // dd($remember);
             
         if (Auth::attempt($credentials)) {
             $user = User::find(Auth::id());
-            if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {                
-                $request->session()->regenerate();                
-                return redirect()->intended('dashboard');
-            }                        
-            $request->session()->regenerate();
-            // if ($user->hasRole('admin')) {
-            //     return redirect()->intended('dashboard');
-            // }             
+            if ($remember == "on") {
+                if (Auth::attempt(['email' => $email, 'password' => $password], $remember=true)) {                
+                    $request->session()->regenerate();                
+                    return redirect()->intended('dashboard');
+                }                        
+            }        
+            $request->session()->regenerate();                    
             return redirect()->intended('dashboard');
         }           
         return redirect('login');

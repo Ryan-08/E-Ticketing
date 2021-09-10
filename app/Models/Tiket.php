@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Tiket extends Model
 {
@@ -12,12 +13,16 @@ class Tiket extends Model
     protected $table = 'tickets';
 
     protected $fillable = [
+        'no_ticket',
         'problem',
         'description',
         'image_path',
+        'ticket_status_id',
+        'problem_status_id',
+        'user_id',
     ];
 
     public function user() {
-        return $this->hasOne(User::class);
-    }
+        return $this->belongsTo(User::class);
+    }       
 }

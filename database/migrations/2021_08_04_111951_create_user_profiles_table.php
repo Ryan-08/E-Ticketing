@@ -16,7 +16,7 @@ class CreateUserProfilesTable extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();            
             $table->string('contact')->default('-');
-            $table->string('image_path')->default('/images/avatar-noname.svg');
+            $table->string('image_path')->default('avatar-noname.svg');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->timestamps();

@@ -6,12 +6,13 @@
 
 @section('konten')
 <div class="container">
+    <!-- id mean status ticket -->
     @if( $id == 3)
     <div class="button-sticky">
-        <button class="btn-primary">
+        <a href="{{ route('cetak', $tiket->no_ticket) }}" class="btn-primary">
             <span><i class="fas fa-print"></i></span>
             Cetak Laporan
-        </button>
+        </a>
     </div>
     <div class="form-container" style="padding-top: 60px;">
         @else
@@ -23,8 +24,9 @@
                     <div class="form-list">
                         <label for="instansi">Nama Instansi</label>
                         <div class="form-box center">
-                            <img src="{{ asset('images/avatar-noname.svg')}}" alt="avatar">
-                            <div class="form-text">Dinas Kesehatan</div>
+                            <img width="40px" height="40px" style="border-radius: 50%;"
+                                src="{{ Storage::url('images/'.$data->user_profiles->image_path) }}" alt="avatar">
+                            <div class="form-text">{{ $data->name }}</div>
                         </div>
                     </div>
                     <div class="inline-form">
@@ -33,7 +35,7 @@
                             <div class="form-box center">
                                 <div class="form-text">
                                     <i class="fas fa-ticket-alt"></i>
-                                    001-ABC
+                                    {{ $tiket->no_ticket }}
                                 </div>
                             </div>
                         </div>
@@ -42,7 +44,7 @@
                             <div class="form-box center">
                                 <div class="form-text">
                                     <i class="far fa-calendar-alt"></i>
-                                    24 Mei 2020
+                                    {{ $tiket->created_at->toDateString() }}
                                 </div>
                             </div>
                         </div>
@@ -50,16 +52,13 @@
                     <div class="form-list">
                         <label for="instansi">Judul Masalah</label>
                         <div class="form-box">
-                            <div class="form-text">Contact email not linked</div>
+                            <div class="form-text">{{ $tiket->problem }}</div>
                         </div>
                     </div>
                     <div class="form-list">
                         <label for="instansi">Deskripsi Masalah</label>
                         <div class="form-box" style="height: 200px;">
-                            <div class="form-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-                                ut, excepturi saepe tempore magni corrupti consequuntur accusantium corporis provident
-                                illum. Consectetur, non. A repellendus nemo, consectetur nesciunt quos minus
-                                exercitationem.</div>
+                            <div class="form-text">{{ $tiket->description }}</div>
                         </div>
                     </div>
                     <div class="form-list">
@@ -68,8 +67,12 @@
                             <!-- Trigger the Modal -->
                             <div id="myBtn" class="form-text">
                                 <i class="fas fa-paperclip" style="color: #9FA2B4;"></i>
-                                <img id="myImg" src="{{ asset('images/avatar-noname.svg')}}" alt="image">
-                                <span class="text-less">avatar-noname.svg</span>
+                                @if( $tiket->image_path )
+                                <img id="myImg" src="{{ Storage::url('lampiran/'.$tiket->image_path) }}" alt="image">
+                                <span class="text-less">{{ $tiket->image_path }}</span>
+                                @else
+                                <span class="text-less">no image</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -109,7 +112,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    <a href="{{ route('dashboard') }}" type="button" class="btn btn-success">Lanjutkan</a>
+                    <a href="{{ route('close-ticket', $tiket->no_ticket) }}" type="button"
+                        class="btn btn-success">Lanjutkan</a>
                 </div>
                 @else
                 <div class="modal-body">
@@ -117,7 +121,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                    <a href="{{ route('response', $id) }}" type="button" class="btn btn-success">Lanjutkan</a>
+                    <a href="{{ route('response', $tiket->no_ticket) }}" type="button"
+                        class="btn btn-success">Lanjutkan</a>
                 </div>
                 @endif
 
@@ -138,7 +143,7 @@
         <!-- Modal Caption (Image Text) -->
         <div id="caption"></div>
     </div>
-
+    @push('custom-scripts')
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -162,4 +167,5 @@
             modal.style.display = "none";
         }
     </script>
+    @endpush
     @endsection

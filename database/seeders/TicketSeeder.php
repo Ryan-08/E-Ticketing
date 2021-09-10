@@ -26,11 +26,6 @@ class TicketSeeder extends Seeder
             ['p_status' => 'selesai'],            
             ['p_status' => 'belum'],            
         ]);
-
-        // Tiket::create([
-        //     'no_ticket' => '1',
-        //     'problem' => 'admin',
-        //     'description' => 'admin@admin.com',            
-        // ]);
+        
     }
 }

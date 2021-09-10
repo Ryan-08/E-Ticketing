@@ -15,7 +15,7 @@
   background-color: white;
   border: 1px solid #dfe0eb;
   border-radius: 10px;
-  width: 200%;
+  width: 100%;
   margin-top: 2%;
   margin-left: 50px;
 }
@@ -99,7 +99,8 @@
 
 .form-container .tabel .form-footer-tabel {
   display: flex;
-  margin-left: 800px;
+  /* margin-left: 600px; */
+  justify-content: flex-end;
   margin-bottom: 50px;
 }
 
@@ -174,88 +175,6 @@
   padding-right: 10%;
   padding-left: 10%;
 }
-
-/* Style the Image Used to Trigger the Modal */
-#myImg {
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#myImg:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (Image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@keyframes zoom {
-  from {transform:scale(0)}
-  to {transform:scale(1)}
-}
-
-/* The Close Button */
-.btn-close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn-close:hover,
-.btn-close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
-
-
 .upload-btn-wrapper {
   position: relative;
   overflow: hidden;
@@ -279,10 +198,11 @@
 }
 
 
-.btn {
+.mybtn {
   color:blue;
   font-size: 14px;
   font-weight: bold;
+  width: 150px;
 }
 
 .upload-btn-wrapper input[type=file] {
@@ -504,7 +424,7 @@
 #myBtn:hover {opacity: 0.7;}
 
 /* The Modal (background) */
-.modal,.my-modal {
+.my-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -519,7 +439,7 @@
 }
 
 /* Modal Content (Image) */
-.modal-content,.my-modal-content {
+.my-modal-content {
   margin: auto;
   display: block;
   width: 80%;

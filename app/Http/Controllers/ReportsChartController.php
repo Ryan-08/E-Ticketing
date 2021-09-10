@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Charts\ReportsChart;
+use App\Models\Tiket;
+use Chartisan\PHP\Chartisan;
 
 class ReportsChartController extends Controller
 {
@@ -14,11 +15,12 @@ class ReportsChartController extends Controller
      */
     public function index()
     {
-        // $chart = new ReportsChart;
-        // $chart->labels(['Jan', 'Feb', 'Mar']);
-        // $chart->dataset('Users by trimester', 'line', [10, 25, 13]);
-        // dd($chart);
-        // return view('admin.home', [ 'chart' => $chart ] );
+        $tikets = Tiket::all();
+        $labels = ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu'];
+        $count = [];
+        foreach ($labels as $label){
+            dd($labels);            
+        }        
     }
 
     /**

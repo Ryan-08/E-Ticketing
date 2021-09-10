@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,8 +27,6 @@
 
 <body>
   @yield('konten')
-
-  <script src="js/main.js"></script>
   <script src="{{asset('js/simple.js')}}"></script>
 </body>
 

@@ -35,7 +35,7 @@
     </div>
 
 
-    <form action="{{ route('postlogin') }}" method="POST" class="form">
+    <form action="{{ route('postlogin') }}" method="POST" class="form" autocomplete="off">
       @csrf
       <div class="form-input">
         <label for="username">

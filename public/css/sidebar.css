@@ -70,15 +70,15 @@ a {
   font-size: 1.2rem;
 }
 
-
-.nav-links li a:hover .down{
-  transform: translateY(20%) rotate(-180deg);
-}
 .nav-links .links ul{
   display: none;
 }
 .nav-links .links .profil-show.show{
   display: block;
+  padding-left: 0px;
+}
+.nav-links .links .profil-show.show li a{
+  padding-left: 59px;
 }
 .nav-links .links .profil-btn{
   display: flex;
@@ -90,7 +90,7 @@ a {
   font-size: 16px;
 }
 
-.nav-links .links .profil-btn:hover .down{
+.nav-links .links .profil-btn.show .down{
   transform: translateY(20%) rotate(-180deg);
 }
 

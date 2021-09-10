@@ -15,35 +15,43 @@
       </a>
     </li>
 
-
-      <li class="links">
-        <a class="profil-btn">
-          <span><i class="fas fa-user-circle"></i></span>
-          Profil
-          <span class="down"><i class="fas fa-chevron-down"></i></span>
-        </a>
-
-        <ul class="profil-show">
-          <li><a href="/user/data-diri">Data Diri</a></li>
-          <li><a href="/user/ubah-password">Ubah Password</a></li>
-        </ul>
-      </li>
-
+    @role('user')
     <li class="links">
+      <a class="profil-btn {{ request()->is('Profil/*') ? 'show' : '' }}">
+        <span><i class="fas fa-user-circle"></i></span>
+        Profil
+        <span class="down"><i class="fas fa-chevron-down"></i></span>
+      </a>
 
-      <a href="/user/lapor-masalah">
-        <span><img src="{{asset ('images/Lapor-Masalah.svg')}}"/></span>
+      <ul class="profil-show {{ request()->is('Profil*') ? 'show' : '' }}">
+        <li>
+          <a href="{{ route('data-diri') }}" class="{{ request()->is('Profil/Data Diri') ? 'active' : '' }}">
+            Data Diri
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('ubah-pass') }}" class="{{ request()->is('Profil/Ubah Password') ? 'active' : '' }}">
+            Ubah Password
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class=" links">
+      <a href="{{ route('lapor-masalah') }}" class="{{ request()->is('Lapor Masalah*') ? 'active' : '' }}">
+        <span><img src="{{asset ('images/Lapor-Masalah.svg')}}" /></span>
         Lapor Masalah
       </a>
-    </li><li class="links">
-      <a href="/user/daftar-masalah">
-        <span><img src="{{asset ('images/Daftar-Laporan.svg')}}" alt="logo" /></span>
-        Daftar Masalah
-      <a href="{{ route('daftar-tiket') }}" class="{{ request()->is('daftar-tiket*') ? 'active' : '' }}">
+    </li>
+    @endrole
+    <li class="links">
+      <a href="{{ route('daftar-tiket') }}" class="{{ request()->is('Daftar Tiket*') ? 'active' : '' }}">
         <span>
           <i class="fas fa-ticket-alt"></i>
         </span>
-        Daftar Tiket
+        @role("admin") Daftar Tiket @endrole
+
+        @role('user') Daftar Laporan @endrole
       </a>
     </li>
     @role('admin')
@@ -69,8 +77,8 @@
 <script>
   $('.profil-btn').click(function () {
     $('.nav-links .links .profil-show').toggleClass("show");
+    $(this).toggleClass("show");
   });
-
 
   $(function () {
     $("a").click(function () {

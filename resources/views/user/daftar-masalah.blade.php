@@ -1,20 +1,18 @@
-@extends('/layout/dashboard') @section('title') Daftar Masalah @endsection
-@section('header-title') Daftar Masalah @endsection @section('konten')
+@extends('layout.dashboard')
+@section('title') Daftar Masalah @endsection
+@section('header-title') Daftar Laporan @endsection
+@section('konten')
 <div class="container" id="container">
-  <div class="container-list">
+  <div class="container-list" style="padding-top: 0px;">
     <div class="card">
       <div class="card-body">
         <div class="header">
           <h5 class="card-title">Semua Tiket</h5>
           <div class="list-fitur">
-            <form action="">
+            <form action="{{ route('cari-tiket') }}" autocomplete="off">
+              @csrf
               <div class="form-input">
-                <input
-                  type="search"
-                  name="Search-tiket"
-                  id="search"
-                  placeholder="Cari..."
-                />
+                <input type="search" name="search" id="search" placeholder="Cari..." value="{{request('search')}}" />
                 <label for="search">
                   <span>
                     <i class="fas fa-search"></i>
@@ -43,257 +41,75 @@
                     <th class="table-header">Tanggal Selesai</th>
                     <th class="table-header">Status</th>
                   </tr>
+                  @foreach($tiket as $ticket)
+                  @if($ticket->user_id == $user->id)
                   <!-- tiket -->
-                  <tr class="list" data-url="/user/close">
+                  <tr class="list"
+                    data-url="{{ $ticket->ticket_status_id != '1' ? route('user-tiket', $ticket->no_ticket) : '#'}}">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
+                        <img width="40px" height="40px" style="border-radius: 50%;"
+                          src="{{ Storage::url('images/'.$user->user_profiles->image_path) }}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
+                          <span class="text-atas">{{ $ticket->problem}}</span>
+                          <span class="text-bawah">Nomor Tiket: {{$ticket->no_ticket}}</span>
                         </div>
                       </div>
                     </td>
                     <td class="tiket">
                       <div class="nama-instansi">
                         <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
+                          <span class="text-atas">{{ $user->name}}</span>
+                          <span class="text-bawah">on {{$ticket->created_at->toDateString()}}</span>
                         </div>
                       </div>
                     </td>
+                    @foreach($status_ticket as $status)
+                    @if($status->id == $ticket->ticket_status_id)
                     <td class="tiket">
                       <div class="tanggal-selesai">
+                        @if($status->id == 3)
                         <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
+                          <span class="text-atas">{{$ticket->updated_at->format('d-M-Y')}}</span>
+                          <span class="text-bawah">{{$ticket->updated_at->format('h:i A')}}</span>
                         </div>
+                        @else
+                        <div class="detail-text">
+                          <span class="text-atas">Sedang Diproses</span>
+                          <span class="text-bawah">-</span>
+                        </div>
+                        @endif
                       </div>
                     </td>
                     <td class="tiket">
                       <div class="status-tiket">
-                        <div class="status close">CLOSE</div>    
+                        <div class="status {{$status->t_status}}">{{strtoupper($status->t_status)}}</div>
                       </div>
                     </td>
+                    @endif
+                    @endforeach
                   </tr>
                   <!-- end tiket -->
-                  <!-- tiket -->
-                  <tr class="list" data-url="/user/open-tiket">
-                    <td class="tiket">
-                      <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
-                        <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="nama-instansi">
-                        <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="tanggal-selesai">
-                        <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="status-tiket">
-                        <div class="status open">OPEN</div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end tiket -->
-                  
-                  <!-- tiket -->
-                  <tr class="list" data-url="/user/pending">
-                    <td class="tiket">
-                      <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
-                        <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="nama-instansi">
-                        <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="tanggal-selesai">
-                        <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="status-tiket">
-                        <div class="status pending">PENDING</div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end tiket -->
-                  <!-- tiket -->
-                  <tr class="list" data-url="/home">
-                    <td class="tiket">
-                      <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
-                        <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="nama-instansi">
-                        <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="tanggal-selesai">
-                        <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="status-tiket">
-                        <div class="status pending">
-                          PENDING
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end tiket -->
-                  <!-- tiket -->
-                  <tr class="list" data-url="/home">
-                    <td class="tiket">
-                      <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
-                        <div class="detail-text">
-                          <span class="text-atas">Contact Mail not Linked</span>
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="nama-instansi">
-                        <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="tanggal-selesai">
-                        <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="status-tiket">
-                        <div class="status close">
-                          CLOSE
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end tiket -->
-                  <!-- tiket -->
-                  <tr class="list" data-url="/home">
-                    <td class="tiket">
-                      <div class="detail-tiket">
-                        <img
-                          src="{{asset ('images/avatar-noname.svg')}}"
-                          alt=""
-                        />
-                        <div class="detail-text">
-                          <span class="text-atas"
-                            >Contact Email not Linked</span
-                          >
-                          <span class="text-bawah">Nomor Tiket: 001-ABC</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="nama-instansi">
-                        <div class="detail-text">
-                          <span class="text-atas">Dinas Kesehatan</span>
-                          <span class="text-bawah">on 24.05.2019</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="tanggal-selesai">
-                        <div class="detail-text">
-                          <span class="text-atas">26 Mei, 2019</span>
-                          <span class="text-bawah">6:30 PM</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="tiket">
-                      <div class="status-tiket">
-                        <div class="status open">
-                          OPEN
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- end tiket -->
+                  @endif
+                  @endforeach
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+        <div class="table-footer">
+
+        </div>
+        {{ $tiket->links() }}
       </div>
     </div>
   </div>
 </div>
+@push('custom-scripts')
 <script>
   $(".list").click(function () {
     window.location = $(this).data("url");
   });
 </script>
+@endpush
 @endsection

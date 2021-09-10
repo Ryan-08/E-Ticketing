@@ -27,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\ReportsChart::class
         ]);
+        config(['app.locale' => 'id']);
+	    \Carbon\Carbon::setLocale('id');
     }
 }

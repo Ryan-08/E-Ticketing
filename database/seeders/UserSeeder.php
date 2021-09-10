@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
         $admin_profiles = UserProfile::create([
             'contact' => '08098928',
             'user_id' => $admin->id,
+            'image_path' => assets('images/logo-diskominfotik-bna.png'),
         ]);
         $admin->assignRole('admin');
                 

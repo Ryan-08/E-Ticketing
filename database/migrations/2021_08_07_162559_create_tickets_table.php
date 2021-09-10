@@ -27,14 +27,15 @@ class CreateTicketsTable extends Migration
         
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('no_ticket');
+            $table->string('no_ticket')->default('-');
             $table->string('problem');
             $table->string('description');
             $table->string('image_path')->nullable();
+            $table->string('alasan_pending')->nullable();
             
-            $table->unsignedBigInteger('ticket_status_id');
-            $table->unsignedBigInteger('problem_status_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('ticket_status_id')->default('1');
+            $table->unsignedBigInteger('problem_status_id')->default('2');
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')
@@ -62,9 +63,9 @@ class CreateTicketsTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::dropIfExists('tickets');     
+    {             
         Schema::dropIfExists('t_status');     
         Schema::dropIfExists('p_status');     
+        Schema::dropIfExists('tickets');
     }
 }
