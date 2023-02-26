@@ -45,17 +45,14 @@
     integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
     crossorigin="anonymous"></script>
 
-  <!-- qs cdn -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
-    integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  @stack('custom-scripts')
   <script>
     // script for notif
     $('#bell').click(function (e) {
       e.preventDefault();
       e.stopPropagation();
       $('#notif').toggle();
+      $('.notification-count').hide();
     });
     $(document).click(function () {
       $('#notif').hide();
@@ -64,8 +61,8 @@
       window.location = $(this).data("url");
     });
   </script>
-  <script src="{{asset('js/main.js')}}"></script>
   <script src="{{asset('js/simple.js')}}"></script>
+
 </body>
 
 </html>

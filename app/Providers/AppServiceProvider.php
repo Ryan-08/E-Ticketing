@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use ConsoleTVs\Charts\Registrar as Charts;
+// use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
@@ -23,10 +23,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Charts $charts)
+    // public function boot(Charts $charts)
+    public function boot()
     {
-        $charts->register([
-            \App\Charts\ReportsChart::class
-        ]);                
+        // $charts->register([
+        //     \App\Charts\ReportsChart::class
+        // ]);
+        config(['app.locale' => 'id']);
+        \Carbon\Carbon::setLocale('id');
     }
 }

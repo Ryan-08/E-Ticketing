@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {        
+    {
         $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
@@ -23,9 +23,10 @@ class UserSeeder extends Seeder
         $admin_profiles = UserProfile::create([
             'contact' => '08098928',
             'user_id' => $admin->id,
+            // 'image_path' => assets('images/logo-diskominfotik-bna.png'),
         ]);
         $admin->assignRole('admin');
-                
+
         $user = User::create([
             'name' => 'user',
             'email' => 'user@user.com',

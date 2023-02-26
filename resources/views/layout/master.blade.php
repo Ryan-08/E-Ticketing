@@ -28,8 +28,6 @@
 
 <body>
   @yield('konten')
-
-  <script src="js/main.js"></script>
   <script src="{{asset('js/simple.js')}}"></script>
 </body>
 

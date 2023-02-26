@@ -33,7 +33,8 @@
         <div class="form-title">
             <h1>Atur Ulang Kata Sandi</h1>
         </div>
-        <form id="formReset" action="{{ route('password.email') }}" method="POST" class="form" style="width: 65%;">
+        <form id="formReset" action="{{ route('password.email') }}" method="POST" class="form" style="width: 65%;"
+            autocomplete="off">
             @csrf
             <div class="text-description" style="color:#9FA2B4; margin-bottom: 20px;">
                 Masukkan alamat email akun anda, untuk kami kirimkan tautan me-reset password.

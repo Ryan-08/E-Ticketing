@@ -3,49 +3,21 @@ const chatMessages = document.querySelector(".chat-body");
 const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
 
-// get uname and room in this case room is no ticket
-const { username, room } = Qs.parse(location.search, {
-  ignoreQueryPrefix: true,
-});
+//get user and no_ticket as room
+const username = user.name;
+const room = ticket.no_ticket;
+const user_path = path.image_path;
+const image_path = from.user_profiles.image_path;
 
-// console.log(username, room);
+// console.log(user, room);
 
 const ip_address = "127.0.0.1";
 const socket_port = "3000";
 const socket = io(ip_address + ":" + socket_port);
 
 // Join chatroom
-socket.emit("joinRoom", { username, room });
+socket.emit("joinRoom", username, room );
 
-//  get room and user
-socket.on("roomUsers", ({ room, users }) => {
-  outputRoomName(room);
-  outputUsers(users);
-});
-var typing=false;
-var timeout=undefined;
-$('#msg').keypress((e)=>{
-  if(e.which!=13){
-    typing=true
-    socket.emit('typing', {user:"user", typing:true})
-    clearTimeout(timeout)
-    timeout=setTimeout(typingTimeout, 3000)
-  }else{
-    clearTimeout(timeout)
-    typingTimeout()
-    //sendMessage() function will be called once the user hits enter
-    // sendMessage()
-  }
-})
-
-socket.on('display', (data)=>{
-  if(data.typing==true) {
-    onTyping();
-    chatMessages.scrollTop = chatMessages.scrollHeight;    
-  }     
-  else
-    false;
-})
 
 socket.on("receive-message", (message) => {
   // console.log(message);
@@ -57,7 +29,6 @@ socket.on("receive-message", (message) => {
 socket.on("bot-message", (message) => {
   // console.log(message);
   botMessage(message);
-
   //   Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
@@ -75,8 +46,13 @@ chatForm.addEventListener("submit", (e) => {
 
   //   get message
   const msg = e.target.elements.msg.value;
+  const username = user.name;
+  const room = ticket.no_ticket;
+
+  // console.log(username, room);
+
   //   emit message to server
-  socket.emit("chatMessage", msg);
+  socket.emit("chatMessage", msg, username, room);
 
   //   clear input
   e.target.elements.msg.value = "";
@@ -84,59 +60,27 @@ chatForm.addEventListener("submit", (e) => {
 });
 
 // Output send message to DOM
+function receiveMessage(message) {
+  const div = document.createElement("div");
+  div.classList.add("chat-receive");
+  div.innerHTML = `<img src="/storage/images/${image_path}" width=45 height=45>
+                <div class="chat-message">${message.text}</div>
+                <span class="time">${message.time}</span>`;        
+  document.querySelector(".chat-body").appendChild(div);
+}
 function sendMessage(message) {
   const div = document.createElement("div");
   div.classList.add("chat-send");
   div.innerHTML = `<span class="time">${message.time}</span>                
                 <div class="chat-message">${message.text}</div>
-                <img src="/images/tes-profil.jpg" alt="avatar" width=45 height=45>`;
-        // `<p class="meta">${message.username} <span>${message.time}</span></p>
-        // <p class="text">
-        //   ${message.text}
-        // </p>`
-  document.querySelector(".chat-body").appendChild(div);
-}
-function receiveMessage(message) {
-  const div = document.createElement("div");
-  div.classList.add("chat-receive");
-  div.innerHTML = `<img src="/images/tes-profil.jpg" alt="avatar" width=45 height=45>  
-                <div class="chat-message">${message.text}</div>
-                <span class="time">${message.time}</span>`;
-        // `<p class="meta">${message.username} <span>${message.time}</span></p>
-        // <p class="text">
-        //   ${message.text}
-        // </p>`
+                <img src="/storage/images/${user_path}" alt="avatar" width=45 height=45>`;
   document.querySelector(".chat-body").appendChild(div);
 }
 function botMessage(message) {
   const div = document.createElement("div");
-  div.classList.add("chat-receive");
-  div.innerHTML = `<span class="time">${message.time}</span>                
-                <div class="chat-message">${message.text}</div>`;        
+  div.classList.add("chat-bot");
+  div.innerHTML = `<div class="chat-message text-center">${message.text}</div>`;        
   document.querySelector(".chat-body").appendChild(div);
 }
 
-function onTyping() {
-  const div = document.createElement("div");
-  div.classList.add("typing");
-  div.innerHTML = `<img src="{{ asset('images/tes-profil.jpg')}}" alt="avatar" width=45 height=45>
-                  <div class="typing-text">
-                      <span>.</span>
-                      <span>.</span>
-                      <span>.</span>
-                      <span>.</span>
-                  </div>`
-  document.querySelector(".chat-body").appendChild(div);
-}
 
-// add room name to DOM
-function outputRoomName(room) {
-  roomName.innerText = room;
-}
-
-// add users to DOM
-function outputUsers(users) {
-  userList.innerHTML = `
-    ${users.map((user) => `<li>${user.username}</li>`).join("")}
-  `;
-}

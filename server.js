@@ -1,37 +1,68 @@
 const express = require("express");
-const formatMessage = require("./public/js/messages");
+const {
+  formatMessage,
+  saveMessages,
+  getMessages,
+} = require("./public/js/messages");
 const {
   userJoin,
   getCurrentUser,
   userLeave,
-  getRoomUsers,
+  getRoomId,
 } = require("./public/js/users");
 const app = express();
 
 const server = require("http").createServer(app);
-const botname = "chatcord bot";
+const botname = "bot E-ticketing";
 const io = require("socket.io")(server, {
   cors: { origin: "*" },
 });
+
+const myroom = '';
 
 io.on("connection", (socket) => {
   //  Run when client connect
   console.log("connection");
 
-  // join room  
-    //   welcome user
-  socket.emit("bot-message", formatMessage(botname, "welcome to chatcord"));
-    //   broadcats when user connect     
+  // join room
+  socket.on("joinRoom", ( username, room ) => {    
+    const user = userJoin(socket.id, username, room);
+    socket.join(user.room);
 
-  //   listen for chatMessage
-  socket.on("chatMessage", (msg) => {    
-    // io.broadcast.emit("send-message", formatMessage("user", msg));
-     socket.broadcast      
+    //   welcome user
+    socket.emit("bot-message", formatMessage(botname, "Selamat Datang Di Layanan Chat E-Ticketing"));
+    //   broadcats when user connect
+    socket.broadcast
+      .to(user.room)
       .emit(
-        "receive-message",
-        formatMessage("user", msg)
-      );  
-    socket.emit("send-message", formatMessage("user", msg));
+        "bot-message",
+        formatMessage(botname, `${user.username} has joined the chat`)
+      );    
+    // get all message
+    getMessages(room, function(result) {
+        messages = result;        
+        getRoomId(room, username, function(result) {
+            id = result[0].id;
+            no_ticket = result[0].no_ticket;
+            messages.forEach(pesan => {              
+              if (pesan.chat_id == id && pesan.no_ticket == no_ticket) {                
+                // console.log("pesan kirim "+pesan.chat_id);
+                socket.emit("send-message", formatMessage(username, pesan.message));
+              } 
+              if(pesan.chat_id != id && pesan.no_ticket == no_ticket){
+                // console.log("pesan terima "+pesan.chat_id);
+                socket.emit("receive-message", formatMessage(username, pesan.message));
+              }
+            });
+        });
+      });
+  });  
+    
+  //   listen for chatMessage
+  socket.on("chatMessage", (msg, username, room) => {    
+    saveMessages(msg, username, room);           
+    socket.to(room).emit("receive-message", formatMessage(username, msg));    
+    socket.emit("send-message", formatMessage(username, msg));
   });
 
   /*from server side we will emit 'display' event once the user starts typing
@@ -46,10 +77,7 @@ io.on("connection", (socket) => {
 
   //   Run when client disconnect
   socket.on("disconnect", () => {    
-      // io.emit(
-      //   "bot-message",
-      //   formatMessage(botname, `"user" has left the chat`)
-      // );              
+    // console.log('diconnected')    
   });
 });
 

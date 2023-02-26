@@ -60,6 +60,7 @@ a {
   padding-left: 27px;
 }
 
+
 .nav-links li a:hover {
   color: var(--dark-color-b);
 }
@@ -67,6 +68,30 @@ a {
 .nav-links li span {
   margin-right: 10px;
   font-size: 1.2rem;
+}
+
+.nav-links .links ul{
+  display: none;
+}
+.nav-links .links .profil-show.show{
+  display: block;
+  padding-left: 0px;
+}
+.nav-links .links .profil-show.show li a{
+  padding-left: 59px;
+}
+.nav-links .links .profil-btn{
+  display: flex;
+  color: white;
+}
+
+.nav-links .links .profil-btn .down{
+  margin-left: 100px;
+  font-size: 16px;
+}
+
+.nav-links .links .profil-btn.show .down{
+  transform: translateY(20%) rotate(-180deg);
 }
 
 .fa-sign-out-alt {

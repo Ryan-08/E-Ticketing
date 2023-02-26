@@ -33,11 +33,11 @@
         <div class="form-title">
             <h1>Atur Ulang Kata Sandi</h1>
         </div>
-        <form action="{{ route('password.update') }}" method="POST" class="form" style="width: 65%;">
+        <form action="{{ route('password.update') }}" method="POST" class="form" style="width: 65%;" autocomplete="off">
             @csrf
-            <div class="text-description" style="color:#9FA2B4; margin-bottom: 20px;">
+            <!-- <div class="text-description" style="color:#9FA2B4; margin-bottom: 20px;">
                 Masukkan alamat email akun anda, untuk kami kirimkan tautan me-reset password.
-            </div>
+            </div> -->
             <div class="form-input">
                 <label for="username">
                     <span><i class="fas fa-envelope"></i></span>
@@ -46,13 +46,13 @@
             </div>
             <div class="form-input">
                 <label for="password">
-                    <span><i class="fas fa-envelope"></i></span>
+                    <span><i class="fas fa-lock"></i></span>
                 </label>
                 <input id="password" name="password" type="password" placeholder="Password" />
             </div>
             <div class="form-input">
                 <label for="password_confirmation">
-                    <span><i class="fas fa-envelope"></i></span>
+                    <span><i class="fas fa-lock"></i></span>
                 </label>
                 <input id="password_confirmation" name="password_confirmation" type="password"
                     placeholder="Konfirmasi Password" />

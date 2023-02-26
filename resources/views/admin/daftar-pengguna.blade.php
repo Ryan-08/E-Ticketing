@@ -15,7 +15,8 @@
         <div class="header">
           <h5 class="card-title">Semua Pengguna</h5>
           <div class="list-fitur">
-            <form action="{{ route('cari') }}">
+            <form action="{{ route('cari-user') }}" autocomplete="off">
+              @csrf
               <div class="form-input">
                 <input type="text" name="search" id="search" placeholder="Cari..." value="{{request('search')}}" />
                 <label for="search">
@@ -42,36 +43,37 @@
                     <th class="table-header">Nomor Telepon</th>
                     <th class="table-header">Aksi</th>
                   </tr>
-                  @foreach($user as $data)
+                  @foreach($data as $dinas)
                   <!-- tiket -->
                   <tr class="list">
                     <td class="tiket">
                       <div class="detail-tiket">
-                        <img src="{{ $data->user_profiles->image_path }}" alt="" />
+                        <img width="40" height="40" style="border-radius: 50%;"
+                          src="{{ Storage::url('images/'.$dinas->user_profiles->image_path) }}" alt="" />
                         <div class="detail-text">
-                          <span class="text-atas">{{ $data->name }}</span>
+                          <span class="text-atas">{{ $dinas->name }}</span>
                         </div>
                       </div>
                     </td>
                     <td class="tiket">
                       <div class="email">
                         <div class="detail-text">
-                          <span class="text-atas">{{ $data->email }}</span>
+                          <span class="text-atas">{{ $dinas->email }}</span>
                         </div>
                       </div>
                     </td>
                     <td class="tiket">
                       <div class="no-telepon">
                         <div class="detail-text">
-                          @if($data->user_profiles)
-                          <span class="text-atas">{{ $data->user_profiles->contact }}</span>
+                          @if($dinas->user_profiles)
+                          <span class="text-atas">{{ $dinas->user_profiles->contact }}</span>
                           @endif
                         </div>
                       </div>
                     </td>
                     <td class="tiket">
                       <div class="aksi">
-                        <a href="daftar-pengguna/edit/{{$data->id}}" class="edit btn btn-success">
+                        <a href="daftar-pengguna/edit/{{$dinas->id}}" class="edit btn btn-success">
                           <span><i class="fas fa-edit"></i></span>
                           Edit
                         </a>
@@ -93,11 +95,15 @@
         <div class="table-footer">
 
         </div>
-        {{ $user->links() }}
+        @if($data->isNotEmpty())
+        {{ $data->links() }}
+        @endif
       </div>
     </div>
   </div>
 </div>
+
+@if($data->isNotEmpty())
 <!-- Modal -->
 <!-- modal hapus -->
 <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -112,12 +118,14 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-        <a href="daftar-pengguna/hapus/{{$data->id}}" type="button" class="btn btn-success">Saya yakin</a>
+        <a href="daftar-pengguna/hapus/{{$dinas->id}}" type="button" class="btn btn-success">Saya yakin</a>
       </div>
     </div>
   </div>
 </div>
 <!-- end modal -->
+@endif
+@push('custom-scripts')
 <script>
   window.setTimeout(function () {
     $(".alert").fadeTo(500, 0).slideUp(500, function () {
@@ -125,4 +133,5 @@
     });
   }, 3000);
 </script>
+@endpush
 @endsection
